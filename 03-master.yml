@@ -20,7 +20,7 @@ spec:
           name: master-node
           env: 
             - name: KAFKA_BROKER
-              value: "10.106.96.176:9092"
+              value: "kafka-service.kafka.svc.cluster.local:9092"
             - name: BOT_API_TOKEN
               valueFrom:
                 secretKeyRef:

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:   
+  name: master
+  labels:
+    app: master
+  namespace: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: master
+  template:
+    metadata:
+      labels:
+        app: master
+    spec:
+      containers:
+        - image: bakvivas/venom_master_node:latest
+          name: master-node
+          env: 
+            - name: KAFKA_BROKER
+              value: "10.106.96.176:9092"
+            - name: BOT_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-bot-secrets
+                  key: BOT_API_TOKEN
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: master-service
+  labels:
+    app: kafka
+  namespace: kafka
+spec:
+  type: ClusterIP
+  selector:
+    app: master
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

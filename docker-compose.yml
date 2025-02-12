@@ -36,6 +36,7 @@ services:
       - my_kafka_network
 
 
+
 networks:
   my_kafka_network:
     driver: bridge

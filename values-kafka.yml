@@ -1,0 +1,50 @@
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClass: standard
+replicaCount: 1
+zookeeper:
+  enabled: false
+
+controller:
+  replicaCount: 1
+
+# auth:
+#   enabled: true
+#   sasl:
+#     mechanisms: scram-sha-256
+#     interBrokerMechanism: scram-sha-256
+#     jaas:
+#       users:
+#         - admin
+#         - user1
+#       passwords:
+#         - "supersecurepassword"  # Пароль для admin
+#         - "nPuVVVyWrm"           # Пароль для user1
+#       acls:
+#         - user: admin
+#           acl:
+#             - resource: "Topic"
+#               resourceName: "*"
+#               type: "allow"
+#               operation: "All"
+#             - resource: "Group"
+#               resourceName: "*"
+#               type: "allow"
+#               operation: "All"
+#             - resource: "Cluster"
+#               resourceName: "kafka-cluster"
+#               type: "allow"
+#               operation: "All"
+
+
+# extraVolumes:
+#   - name: kafka-jaas
+#     configMap:
+#       name: kafka-server-jaas
+
+# extraVolumeMounts:
+#   - name: kafka-jaas
+#     mountPath: /opt/bitnami/kafka/config/kafka_server_jaas.conf
+#     subPath: kafka_server_jaas.conf
+#     readOnly: true

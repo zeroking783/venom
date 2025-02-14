@@ -1,0 +1,6 @@
+*.session
+*.session-journal
+*.idea/
+graphics
+vids
+*.png

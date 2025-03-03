@@ -7,7 +7,19 @@ zookeeper:
   enabled: false
 
 controller:
-  replicaCount: 1
+  replicaCount: 3
+
+provisioning:
+  enabled: true
+  topics:
+    - name: my-topic
+      partitions: 3
+      replicationFactor: 3
+      config:
+        cleanup.policy: "delete"
+        min.insync.replicas: 2
+        retention.ms: 604800000 # 7 дней
+
 
 # auth:
 #   enabled: true

@@ -19,13 +19,14 @@ spec:
         - image: bakvivas/venom_master_node:latest
           name: master-node
           env: 
-            - name: KAFKA_BROKER
-              value: "kafka-cluster:9092"
             - name: BOT_API_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: telegram-bot-secrets
-                  key: BOT_API_TOKEN
+              value: "7718224163:AAFaxncK3Fhwa_w1KZJvDYASxgGKzNK4aHI"
+            - name: ADRESS_KAFKA_CLUSTER
+              value: "kafka-cluster:9092"
+            - name: KAFKA_USERNAME
+              value: "user1"
+            - name: KAFKA_PASSWORD
+              value: "W7CBCR4z9p"
 
 ---
 apiVersion: v1

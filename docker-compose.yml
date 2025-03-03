@@ -34,8 +34,7 @@ services:
       .env
     networks:
       - my_kafka_network
-
-
+      
 
 networks:
   my_kafka_network:

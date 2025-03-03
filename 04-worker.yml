@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:   
+  name: worker
+  labels:
+    app: worker
+  namespace: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - image: bakvivas/venom_worker_node:latest
+          name: worker-node
+          env: 
+            - name: BOT_API_TOKEN
+              value: "7718224163:AAFaxncK3Fhwa_w1KZJvDYASxgGKzNK4aHI"
+            - name: ADRESS_KAFKA_CLUSTER
+              value: "kafka-cluster:9092"
+            - name: KAFKA_USERNAME
+              value: "user1"
+            - name: KAFKA_PASSWORD
+              value: "W7CBCR4z9p"
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: worker-service
+  labels:
+    app: kafka
+  namespace: kafka
+spec:
+  type: ClusterIP
+  selector:
+    app: worker
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

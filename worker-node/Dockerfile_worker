@@ -1,0 +1,14 @@
+FROM python:latest
+
+WORKDIR /home/worker_node
+
+COPY requirements.txt .
+
+RUN python -m venv .venv \
+    && . .venv/bin/activate \
+    && pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+COPY worker_node.py .
+
+CMD ["/home/worker_node/.venv/bin/python", "worker_node.py"]
